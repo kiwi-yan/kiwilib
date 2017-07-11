@@ -21,14 +21,14 @@
             case 'number': 
                 timeout_ = parseInt(timeout);
                 if (timeout_ < 0) {
-                    console.error('The argument timeout should be positive.');
+                    console.error('The argument `timeout` should be nonnegative.');
                     return;
                 }
                 if (timeout_ > 0) {
                     expireTime = (new Date()).getTime() + timeout_ * 1000;
                 }
                 break;
-            default: console.error('The argument timeout should be a positive integer, not ' + timeout_type + '.');return;
+            default: console.error('The argument `timeout` must be a nonnegative integer, not ' + timeout_type + '.');return;
             }
             res = JSON.stringify({val: val, expires: expireTime});
             if ('__ts_' + key)
