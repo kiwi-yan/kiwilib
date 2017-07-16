@@ -7,7 +7,7 @@
 
 #include <epoll.h>
 
-#include <errno.h>          // for `errno`
+#include <cerrno>          // for `errno`
 
 namespace kiwi {
 
@@ -25,7 +25,7 @@ Epoll::~Epoll()
 }
 
 int
-Epoll::create(int sizehint)
+Epoll::create(int sizehint/* = FD_SETSIZE - 1 */)
 {
     _M_epfd = epoll_create(sizehint);
     if (_M_epfd < 0) {
@@ -105,7 +105,7 @@ Epoll::get_events(int& fd, unsigned int& events)
         return 0;
     }
 
-	epoll_event* current_event = &_M_events[_M_event_index++];
+	epoll_event *current_event = &_M_events[_M_event_index++];
 	fd = current_event->data.fd;
 	events = current_event->events;
 	return 1;

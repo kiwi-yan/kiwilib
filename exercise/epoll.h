@@ -65,7 +65,7 @@ private:
     int _M_size;
     int _M_event_num;
     int _M_event_index;
-    epoll_event* _M_events;
+    epoll_event *_M_events;
 
     int control(int op, int fd, unsigned int events);
 };
